@@ -40,3 +40,23 @@ Thumbs.db
 .actrc*
 
 __pycache__/
+
+# Node.js and npm #
+###################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Angular build artifacts #
+###########################
+/library-management/dist/
+/library-management/.angular/
+/library-management/.vscode/
+/library-management/node_modules/
+
+# Backend build artifacts #
+###########################
+/backend/*/node_modules/
+/backend/*/package-lock.json

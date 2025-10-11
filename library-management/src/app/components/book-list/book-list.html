@@ -1,0 +1,52 @@
+<div class="book-list-container">
+  <h2>Library Books</h2>
+
+  <div *ngIf="loading" class="loading">Loading books...</div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && !error && books.length === 0" class="empty">
+    No books available in the library.
+  </div>
+
+  <div class="books-grid" *ngIf="!loading && !error && books.length > 0">
+    <div class="book-card" *ngFor="let book of books">
+      <div class="book-header">
+        <h3>{{ book.title }}</h3>
+        <span class="genre-badge">{{ book.genre }}</span>
+      </div>
+      
+      <div class="book-details">
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Published:</strong> {{ book.publishedYear }}</p>
+        <p><strong>Available Copies:</strong> 
+          <span [class.low-stock]="book.availableCopies === 0">
+            {{ book.availableCopies }} / {{ book.totalCopies }}
+          </span>
+        </p>
+      </div>
+
+      <div class="book-actions">
+        <button 
+          class="btn btn-primary" 
+          (click)="borrowBook(book.id)"
+          [disabled]="book.availableCopies === 0">
+          Borrow
+        </button>
+        <button 
+          class="btn btn-success" 
+          (click)="returnBook(book.id)"
+          [disabled]="book.availableCopies >= book.totalCopies">
+          Return
+        </button>
+        <button 
+          class="btn btn-danger" 
+          (click)="deleteBook(book.id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

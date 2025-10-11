@@ -1,0 +1,23 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title() }}</h1>
+    <p>Manage your library books with ease</p>
+  </header>
+
+  <main class="app-main">
+    <div class="content-wrapper">
+      <section class="form-section">
+        <app-book-form (bookAdded)="onBookAdded()"></app-book-form>
+      </section>
+
+      <section class="list-section">
+        <app-book-list></app-book-list>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>&copy; 2025 Library Management System</p>
+  </footer>
+</div>
+<router-outlet />

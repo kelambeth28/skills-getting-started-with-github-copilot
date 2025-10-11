@@ -1,0 +1,113 @@
+<div class="book-form-container">
+  <h2>Add New Book</h2>
+
+  <div *ngIf="success" class="alert alert-success">{{ success }}</div>
+  <div *ngIf="error" class="alert alert-error">{{ error }}</div>
+
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title *</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="book.title"
+        required
+        placeholder="Enter book title"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author *</label>
+      <input
+        type="text"
+        id="author"
+        name="author"
+        [(ngModel)]="book.author"
+        required
+        placeholder="Enter author name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="isbn">ISBN *</label>
+      <input
+        type="text"
+        id="isbn"
+        name="isbn"
+        [(ngModel)]="book.isbn"
+        required
+        placeholder="Enter ISBN number"
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="publishedYear">Published Year</label>
+        <input
+          type="number"
+          id="publishedYear"
+          name="publishedYear"
+          [(ngModel)]="book.publishedYear"
+          min="1000"
+          max="2100"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input
+          type="text"
+          id="genre"
+          name="genre"
+          [(ngModel)]="book.genre"
+          placeholder="Enter genre"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="totalCopies">Total Copies</label>
+        <input
+          type="number"
+          id="totalCopies"
+          name="totalCopies"
+          [(ngModel)]="book.totalCopies"
+          min="1"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="availableCopies">Available Copies</label>
+        <input
+          type="number"
+          id="availableCopies"
+          name="availableCopies"
+          [(ngModel)]="book.availableCopies"
+          min="0"
+          [max]="book.totalCopies"
+        />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!bookForm.form.valid || submitting"
+      >
+        {{ submitting ? 'Adding...' : 'Add Book' }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="resetForm()"
+        [disabled]="submitting"
+      >
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+
